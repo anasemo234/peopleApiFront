@@ -11,7 +11,7 @@ const Main = (props) => {
 
     const [ people, setPeople ] = useState(null);
 
-    const URL = 'http://localhost:4000/people';
+    const URL = 'http://localhost:4000/people/';
 
     const getPeople = async () => {
         const response = await fetch(URL);
@@ -32,6 +32,31 @@ const Main = (props) => {
     };
 
 
+    const updatePeople = async (updatedPerson, id) => {
+            await fetch(URL + id, {
+                method: "PUT",
+                headers: {
+                    'Content-type': 'Application/json'
+                },
+                body: JSON.stringify(updatedPerson)
+            });
+            getPeople();
+    }
+
+    const deletePeople = async (id) => {
+        // confirm deletion operations go here
+        // if yes
+            await fetch(URL + id, {
+                method: "DELETE"
+            });
+            getPeople();
+            // if no
+                // return to previous page
+    }
+
+
+
+
     useEffect(() => {
             getPeople();
     }, []);
@@ -42,7 +67,12 @@ const Main = (props) => {
                     <Index  people={people} createPeople={createPeople} />
                     </Route>
                 <Route path="/people/:id" render={(renderProps) => (
-                     <Show {...renderProps} />
+                     <Show 
+                            people={people}
+                            {...renderProps} 
+                            updatePeople={updatePeople}
+                            deletePeople={deletePeople}
+                         />
                     )} />
 
 

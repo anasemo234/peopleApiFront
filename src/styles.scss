@@ -17,15 +17,29 @@ $contrastcolor: white;
 
 
 // Header
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 .nav {
     @include white-text-black-bg;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     a {
         @include white-text-black-bg;
         div {
             margin: 10px;
             font-size: large;
+        }
+    }
+    ul {
+        list-style: none;
+        display: flex;
+        li {
+            margin-right: 1.5rem;
+            cursor: pointer;
         }
     }
 }
