@@ -7,12 +7,15 @@ import './App.css';
 function App() {
   const [ user, setUser ] = useState(null);
   useEffect(() => {
-      auth.onAuthStateChanged(user => setUser(user));
+      const unsubscribe = auth.onAuthStateChanged(user => setUser(user));
+      return () => {
+        unsubscribe();
+      }
   }, []);
   return (
     <div className="App">
           <Header user={user} />
-          <Main />
+          <Main user={user} />
     </div>
   );
 }

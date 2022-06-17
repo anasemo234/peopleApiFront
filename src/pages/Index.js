@@ -37,27 +37,30 @@ const Index = (props) => {
 
     return (
         <section>
+            {props.user &&   // if there is no user the form wont show 
             <form onSubmit={handleSubmit}>
-                <input 
-                    value={newForm.name} 
-                    onChange={handleChange} 
-                    name="name"
-                    type="text" 
-                />
-                <input 
-                    value={newForm.title} 
-                    onChange={handleChange} 
-                    name="title"
-                    type="text" 
-                />
-                <input 
-                    value={newForm.image} 
-                    onChange={handleChange} 
-                    name="image"
-                    type="text" 
-                />
-                <input type="submit" value="Create Person" />
-            </form>
+            <input 
+                value={newForm.name} 
+                onChange={handleChange} 
+                name="name"
+                type="text" 
+            />
+            <input 
+                value={newForm.title} 
+                onChange={handleChange} 
+                name="title"
+                type="text" 
+            />
+            <input 
+                value={newForm.image} 
+                onChange={handleChange} 
+                name="image"
+                type="text" 
+            />
+            <input type="submit" value="Create Person" />
+        </form>
+            }
+            
             { props.people ? <ol style={{textAlign: "left"}}>{loaded()}</ol>: loading() }
         </section>
     );

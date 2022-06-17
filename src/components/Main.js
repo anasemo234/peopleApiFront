@@ -21,6 +21,7 @@ const Main = (props) => {
 
 
     const createPeople = async (person) => {
+            if(!props.user) return;  // if there is no user return out of the function
             await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -33,6 +34,7 @@ const Main = (props) => {
 
 
     const updatePeople = async (updatedPerson, id) => {
+        if(!props.user) return;
             await fetch(URL + id, {
                 method: "PUT",
                 headers: {
@@ -44,6 +46,8 @@ const Main = (props) => {
     }
 
     const deletePeople = async (id) => {
+        if(!props.user) return;
+
         // confirm deletion operations go here
         // if yes
             await fetch(URL + id, {
@@ -64,7 +68,7 @@ const Main = (props) => {
     return (
         <main>
                 <Route exact path="/">
-                    <Index  people={people} createPeople={createPeople} />
+                    <Index  user={props.user} people={people} createPeople={createPeople} />
                     </Route>
                 <Route path="/people/:id" render={(renderProps) => (
                      <Show 

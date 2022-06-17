@@ -27,6 +27,7 @@ body {
     @include white-text-black-bg;
     display: flex;
     justify-content: space-between;
+    
     a {
         @include white-text-black-bg;
         div {
@@ -37,9 +38,14 @@ body {
     ul {
         list-style: none;
         display: flex;
+        align-items: center;
         li {
             margin-right: 1.5rem;
             cursor: pointer;
+        }
+        .greeting-list-item {
+            display: flex;
+            align-items: center;
         }
     }
 }
